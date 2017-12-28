@@ -16,7 +16,7 @@
                 background-color: grey;
             }
             table tr td{
-                width: 100px;height: 100px;
+                width: 300px;height: 200px;
             }
             #room{
                 background-color: blue;
@@ -71,33 +71,33 @@
                     function update_laby(map) {
                         var CODE_PATH = "0"
                         var pos = locate_pos(map);
-                        if(pos.y-1 < 0 || map[pos.x][pos.y-1] == CODE_PATH){
-                            jQuery("#left").addClass("path");
-                            jQuery("#left").removeClass("wall");
-                        }else {
+                        if(pos.y-1 < 0 || map[pos.x][pos.y-1] != CODE_PATH){
                             jQuery("#left").addClass("wall");
                             jQuery("#left").removeClass("path");
-                        }
-                        if(pos.y+1 >= map[0].length || map[pos.x][pos.y+1] == CODE_PATH){
-                            jQuery("#right").addClass("path");
-                            jQuery("#right").removeClass("wall");
                         }else {
+                            jQuery("#left").addClass("path");
+                            jQuery("#left").removeClass("wall");
+                        }
+                        if(pos.y+1 >= map[0].length || map[pos.x][pos.y+1] != CODE_PATH){
                             jQuery("#right").addClass("wall");
                             jQuery("#right").removeClass("path");
-                        }
-                        if(pos.x-1 < 0 || map[pos.x-1][pos.y] == CODE_PATH){
-                            jQuery("#up").addClass("path");
-                            jQuery("#up").removeClass("wall");
                         }else {
+                            jQuery("#right").addClass("path");
+                            jQuery("#right").removeClass("wall");
+                        }
+                        if(pos.x-1 < 0 || map[pos.x-1][pos.y] != CODE_PATH){
                             jQuery("#up").addClass("wall");
                             jQuery("#up").removeClass("path");
-                        }
-                        if(pos.x+1 >= map.length || map[pos.x+1][pos.y] == CODE_PATH){
-                            jQuery("#down").addClass("path");
-                            jQuery("#down").removeClass("wall");
                         }else {
+                            jQuery("#up").addClass("path");
+                            jQuery("#up").removeClass("wall");
+                        }
+                        if(pos.x+1 >= map.length || map[pos.x+1][pos.y] != CODE_PATH){
                             jQuery("#down").addClass("wall");
                             jQuery("#down").removeClass("path");
+                        }else {
+                            jQuery("#down").addClass("path");
+                            jQuery("#down").removeClass("wall");
                         }
                     }
 
