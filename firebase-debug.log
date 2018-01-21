@@ -1,0 +1,33 @@
+[debug] [2018-01-21T16:05:19.077Z] ----------------------------------------------------------------------
+[debug] [2018-01-21T16:05:19.080Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Auelien\AppData\Roaming\npm\node_modules\firebase-tools\bin\firebase serve --only function,hosting
+[debug] [2018-01-21T16:05:19.080Z] CLI Version:   3.17.3
+[debug] [2018-01-21T16:05:19.080Z] Platform:      win32
+[debug] [2018-01-21T16:05:19.080Z] Node Version:  v8.9.4
+[debug] [2018-01-21T16:05:19.081Z] Time:          Sun Jan 21 2018 17:05:19 GMT+0100 (Paris, Madrid)
+[debug] [2018-01-21T16:05:19.081Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2018-01-21T16:05:19.094Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2018-01-21T16:05:19.096Z] > authorizing via signed-in user
+[debug] [2018-01-21T16:05:19.098Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/projects/concours-70882  
+  
+ Sun Jan 21 2018 17:05:19 GMT+0100 (Paris, Madrid)
+[debug] [2018-01-21T16:05:20.748Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-21T16:05:20.749Z] >>> HTTP REQUEST GET https://admin.firebase.com/v1/database/concours-70882/tokens  
+  
+ Sun Jan 21 2018 17:05:20 GMT+0100 (Paris, Madrid)
+[debug] [2018-01-21T16:05:21.571Z] <<< HTTP RESPONSE 200
+[info] 
+[info] === Serving from 'F:\laby'...
+[info] 
+[debug] [2018-01-21T16:05:21.574Z] >>> HTTP REQUEST GET https://cloudresourcemanager.googleapis.com/v1/projects/concours-70882  
+  
+ Sun Jan 21 2018 17:05:21 GMT+0100 (Paris, Madrid)
+[debug] [2018-01-21T16:05:22.508Z] <<< HTTP RESPONSE 200
+[debug] [2018-01-21T16:05:22.508Z] >>> HTTP REQUEST GET https://mobilesdk-pa.googleapis.com/v1/projects/765431765300/clients/_:getWebAppConfig  
+  
+ Sun Jan 21 2018 17:05:22 GMT+0100 (Paris, Madrid)
+[debug] [2018-01-21T16:05:23.193Z] <<< HTTP RESPONSE 200
+[info] i  hosting: Serving hosting files from: public
+[info] +  hosting: Local server: http://localhost:5000
+
+[info] [hosting] Rewriting /laby to live function laby_server

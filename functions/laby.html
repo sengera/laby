@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8" />
+        <title>laby</title>
+        <style>
+            strong {
+                color: white;
+                background-color: black;
+                padding: 2px;
+            }
+            .wall, .corner{
+                background-color: black;
+            }
+            .path{
+                background-color: grey;
+            }
+            table tr td{
+                width: 300px;height: 200px;
+            }
+            #room{
+                background-color: blue;
+            }
+        </style>
+    </head>
+
+    <body>
+        <h1>Le laby</h1>
+
+        <div id="laby">
+            <table>
+                <tr>
+                    <td class="corner"></td>
+                    <td id="up"></td>
+                    <td class="corner"></td>
+                </tr>
+                <tr>
+                    <td id="left"></td>
+                    <td id="room"></td>
+                    <td id="right"></td>
+                </tr>
+                <tr>
+                    <td class="corner"></td>
+                    <td id="down"></td>
+                    <td class="corner"></td>
+                </tr>
+            </table>
+        </div>
+
+        <section id="messages">
+
+        </section>
+
+        <script src="http://code.jquery.com/jquery-1.10.1.min.js"></script>
+        <script src="/socket.io/socket.io.js"></script>
+        <script>
+
+                    // Connexion à socket.io
+                    var socket = io.connect('http://localhost:8080');
+
+                    // Quand on reçoit un message, on l'insère dans la page
+                    socket.on('message', function(data) {
+                        update_laby(data.map);
+                        update_message(data.msg);
+                    })
+
+                    function update_message(msg) {
+                        $('#message').html(msg);
+                    }
+
+                    function update_laby(map) {
+                        var CODE_PATH = "0"
+                        var pos = locate_pos(map);
+                        if(pos.y-1 < 0 || map[pos.x][pos.y-1] != CODE_PATH){
+                            jQuery("#left").addClass("wall");
+                            jQuery("#left").removeClass("path");
+                        }else {
+                            jQuery("#left").addClass("path");
+                            jQuery("#left").removeClass("wall");
+                        }
+                        if(pos.y+1 >= map[0].length || map[pos.x][pos.y+1] != CODE_PATH){
+                            jQuery("#right").addClass("wall");
+                            jQuery("#right").removeClass("path");
+                        }else {
+                            jQuery("#right").addClass("path");
+                            jQuery("#right").removeClass("wall");
+                        }
+                        if(pos.x-1 < 0 || map[pos.x-1][pos.y] != CODE_PATH){
+                            jQuery("#up").addClass("wall");
+                            jQuery("#up").removeClass("path");
+                        }else {
+                            jQuery("#up").addClass("path");
+                            jQuery("#up").removeClass("wall");
+                        }
+                        if(pos.x+1 >= map.length || map[pos.x+1][pos.y] != CODE_PATH){
+                            jQuery("#down").addClass("wall");
+                            jQuery("#down").removeClass("path");
+                        }else {
+                            jQuery("#down").addClass("path");
+                            jQuery("#down").removeClass("wall");
+                        }
+                    }
+
+                    function locate_pos(map) {
+                        for (var i = 0; i < map.length; i++) {
+                            for (var j = 0; j < map[i].length; j++) {
+                                if(map[i][j] == "2")
+                                return {x:i,y:j};
+                            }
+                        }
+                    }
+
+        </script>
+    </body>
+</html>
