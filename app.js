@@ -70,6 +70,8 @@ app.get('/laby/move/:mvt', function (req, res) {
 server.listen(8080);
 
 function readmap(map_str) {
+    console.log(map_str);
+    console.log("#############################");
     //le slice permet de supprimer la ligne vide a la fin due au retour a la ligne de fin de fichier
     var retrun = map_str.split('\r\n').slice(0,-1);
     for (var i = 0; i < retrun.length; i++) {
