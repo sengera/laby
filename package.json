@@ -7,8 +7,8 @@
         "ent": "~0.1.0"
     },
     "scripts": {
-    "start": "npm run app.js",
-  },
+        "start": "npm run app.js"
+    },
     "author": "asenger <aurelien.senger@soprasteria.com>",
     "description": "serverside du projet google home"
 }
