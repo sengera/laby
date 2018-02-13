@@ -17,6 +17,7 @@ io.on('connection', function (socket) {
 });
 
 app.get('/laby/move/:mvt', function (req, res) {
+    var pos = laby.locate_pos(map);
     // on passe à 0 la case de la position
     map[pos.x][pos.y] = laby.CODE_PATH;
     var move = req.params.mvt;
