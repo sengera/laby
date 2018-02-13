@@ -2,7 +2,11 @@ var app = require('express')(),
     server = require('http').createServer(app),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs'),
-    map = JSON.parse(fs.readFileSync("./assets/map.txt",'utf8'));
+    map =[ [ '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '1' ],
+      [ '2', '0', '0', '1', '1', '1', '1', '1', '0', '0', '0', '0', '1' ],
+      [ '1', '1', '0', '1', '1', '0', '0', '0', '0', '1', '1', '0', '1' ],
+      [ '1', '1', '0', '0', '0', '0', '1', '1', '1', '1', '0', '0', '1' ],
+      [ '1', '1', '1', '1', '1', '1', '1', '1', '1', '1', '0', '1', '1' ] ] ;
     var laby = require('./laby.js');
     var pos = laby.locate_pos(map);
 // Chargement de la page index.html
