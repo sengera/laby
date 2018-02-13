@@ -63,7 +63,7 @@ app.get('/laby/move/:mvt', function (req, res) {
 });
 
 
-server.listen(8000);
+server.listen(80);
 
 function readmap(map_str) {
     //le slice permet de supprimer la ligne vide a la fin due au retour a la ligne de fin de fichier
