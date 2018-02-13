@@ -1,20 +1,15 @@
 var app = require('express')(),
     server = require('http').createServer(app),
-    // io = require('socket.io').listen(server),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs'),
-    map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
+    map = JSON.parse(fs.readFileSync("./assets/map.txt",'utf8'));
     var laby = require('./laby.js');
     var pos = laby.locate_pos(map);
 // Chargement de la page index.html
 app.get('/laby', function (req, res) {
   res.sendfile(__dirname + '/laby.html');
-  // io.emit('message',{map : map, msg:"Welcome"});
 });
 
-// io.on('connection', function (socket) {
-//     socket.emit('message',{map : map, msg:"Welcome"});
-// });
 app.get('/laby/getData', function (req, res) {
     res.setHeader('Content-Type', 'application/json');
     res.send(JSON.stringify({ map: map }));
@@ -55,7 +50,6 @@ app.get('/laby/move/:mvt', function (req, res) {
     if(is_sortie(map,pos)){
         out_msg += "GG WP";
     }
-    // io.emit('message',{map : map, msg:out_msg});
     res.writeHead(200);
     if(is_sortie(map,pos)){
         map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
@@ -68,15 +62,3 @@ app.get('/laby/move/:mvt', function (req, res) {
 
 
 server.listen(8080);
-
-function readmap(map_str) {
-    console.log(map_str);
-    console.log("#############################");
-    //le slice permet de supprimer la ligne vide a la fin due au retour a la ligne de fin de fichier
-    var retrun = map_str.split('\r\n').slice(0,-1);
-    for (var i = 0; i < retrun.length; i++) {
-        retrun[i] = retrun[i].split(' ');
-    }
-    console.log(retrun);
-    return retrun;
-}
