@@ -71,11 +71,9 @@ server.listen(8080);
 
 function readmap(map_str) {
     //le slice permet de supprimer la ligne vide a la fin due au retour a la ligne de fin de fichier
-    retrun = map_str.split('\r\n').slice(0,-1);
-    console.log(retrun);
+    var retrun = map_str.split('\r\n').slice(0,-1);
     for (var i = 0; i < retrun.length; i++) {
         retrun[i] = retrun[i].split(' ');
     }
-    console.log(retrun);
     return retrun;
 }
