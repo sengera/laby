@@ -1,6 +1,6 @@
 var app = require('express')(),
     server = require('http').createServer(app),
-    io = require('socket.io').listen(server),
+    // io = require('socket.io').listen(server),
     ent = require('ent'), // Permet de bloquer les caractères HTML (sécurité équivalente à htmlentities en PHP)
     fs = require('fs'),
     map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
@@ -9,11 +9,15 @@ var app = require('express')(),
 // Chargement de la page index.html
 app.get('/laby', function (req, res) {
   res.sendfile(__dirname + '/laby.html');
-  io.emit('message',{map : map, msg:"Welcome"});
+  // io.emit('message',{map : map, msg:"Welcome"});
 });
 
-io.on('connection', function (socket) {
-    socket.emit('message',{map : map, msg:"Welcome"});
+// io.on('connection', function (socket) {
+//     socket.emit('message',{map : map, msg:"Welcome"});
+// });
+app.get('/laby/getData', function (req, res) {
+    res.setHeader('Content-Type', 'application/json');
+    res.send(JSON.stringify({ map: map }));
 });
 
 app.get('/laby/move/:mvt', function (req, res) {
@@ -51,7 +55,7 @@ app.get('/laby/move/:mvt', function (req, res) {
     if(is_sortie(map,pos)){
         out_msg += "GG WP";
     }
-    io.emit('message',{map : map, msg:out_msg});
+    // io.emit('message',{map : map, msg:out_msg});
     res.writeHead(200);
     if(is_sortie(map,pos)){
         map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
