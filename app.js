@@ -75,5 +75,6 @@ function readmap(map_str) {
     for (var i = 0; i < retrun.length; i++) {
         retrun[i] = retrun[i].split(' ');
     }
+    console.log(retrun);
     return retrun;
 }
