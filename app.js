@@ -6,6 +6,7 @@ var app = require('express')(),
     map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
     var laby = require('./laby.js');
     var pos = laby.locate_pos(map);
+    console.log(map);
 // Chargement de la page index.html
 app.get('/laby', function (req, res) {
   res.sendfile(__dirname + '/laby.html');
