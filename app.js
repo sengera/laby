@@ -64,5 +64,52 @@ app.get('/laby/move/:mvt', function (req, res) {
     }
 });
 
+exports.laby_move = function laby_move (req, res) {
+  var move = req.body.result.parameters['geo-city'];
+  var response = "";
+  // on passe à 0 la case de la position
+  map[pos.x][pos.y] = laby.CODE_PATH;
+  var act = {x:0,y:0};
+  switch (move) {
+      case "haut":
+          act.x = -1;
+          break;
+      case "bas":
+          act.x = 1;
+          break;
+      case "gauche":
+          act.y = -1;
+          break;
+      case "droite":
+          act.y = 1;
+          break;
+      default:
+          response = 'move_not_foud';
+          return;
+          break;
+  }
+  if(!laby.is_valid_move(map,pos,act)){
+      response = "wall"
+      return;
+  }
+  pos=laby.do_move(map,pos,act);
+  map[pos.x][pos.y] = laby.CODE_POS;
+  var out_msg = move+"\n";
+  if(is_sortie(map,pos)){
+      response= "GG WP";
+  }
+  if(is_sortie(map,pos)){
+      map = readmap(fs.readFileSync("./assets/map.txt",'utf8'));
+      pos = laby.locate_pos(map);
+  }else {
+      response='ok';
+  }
+
+
+  res.setHeader('Content-Type', 'application/json'); //Requires application/json MIME type
+  res.send(JSON.stringify({ "speech": response, "displayText": response
+  //"speech" is the spoken version of the response, "displayText" is the visual version
+  }));
+};
 
 server.listen(8080);
