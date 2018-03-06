@@ -56,13 +56,19 @@
         <script>
                     var remote = 'https://concours-70882.appspot.com';
                     // Connexion à socket.io
-                    var socket = io.connect(remote);
-
+                    // var socket = io.connect(remote+':8080');
+                    var t=setInterval(refreshView,1000);
                     // Quand on reçoit un message, on l'insère dans la page
-                    socket.on('message', function(data) {
-                        update_laby(data.map);
-                        update_message(data.msg);
-                    })
+                    // socket.on('message', function(data) {
+                    //     update_laby(data.map);
+                    //     update_message(data.msg);
+                    // })
+                    function refreshView(){
+                        $.get( remote+"/getData", function( data ) {
+                            update_laby(data.map);
+                            // update_message(data.msg);
+                        });
+                    }
 
                     function update_message(msg) {
                         $('#message').html(msg);
